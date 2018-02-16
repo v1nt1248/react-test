@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import icon from './expand.png';
-import './Select.css';
+import './Select.scss';
 
 class TSelect extends Component {
   constructor(props) {
@@ -45,7 +45,8 @@ class TSelect extends Component {
           {this.state.selected.name}
           <img src={icon}
                className={this.state.isOpen ? 'select__body-icon select__body-icon--open' : 'select__body-icon'}
-               onClick={this.openContent}/>
+               onClick={this.openContent}
+               alt="icon" />
           <div className={this.state.isOpen ? 'select__body-content select__body-content--open' : 'select__body-content'}>
             {
               this.state.options.map((option, i) => (
