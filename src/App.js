@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { YMaps, Map, Placemark } from 'react-yandex-maps';
 import './App.css';
 import { getListStopPoint, getListStopPointByType, getListStopPointByMode } from './common/service';
+import Select from './components/select/Select';
 
 const markerStyles = {
   width: '50px',
@@ -33,7 +34,7 @@ class App extends Component {
   }
 
   componentDidMount() {
-    this.getListByType();
+    // this.getListByType();
   }
 
   getList = () => {
@@ -69,6 +70,8 @@ class App extends Component {
   render() {
     return (
       <div className="App">
+        <Select options={ModeList}/>
+
         <button onClick={this.getList} style={{margin: '8px'}}>
           GET StopPoint
         </button>
@@ -77,42 +80,42 @@ class App extends Component {
        </button>
 
         <div style={{position: 'relative', padding: '0 20px', marginTop: '50px'}}>
-          <YMaps instanceRef={(el) => {this.yMap = el; console.log(el); }}>
-            <Map state={this.state.map} width={'100%'} height={'600px'} instanceRef={el => {this.map = el}}>
-              {
-                this.state.points.map((point, i) => {
-                  const geo = {
-                    coordinates: [point.lat, point.lon]
-                  };
-                  const prop = {
-                    balloonContent: `<div class="custom-baloon">Станция метро: <b>${point.commonName}</b>`
-                  };
-                  if (point.lines.length > 0) {
-                    prop.balloonContent = `${prop.balloonContent}<ul>Ветки:`;
-                    point.lines.forEach(line => {
-                      prop.balloonContent = prop.balloonContent + `<li id="${line.id}">${line.name}</li>`;
-                    });
-                    prop.balloonContent = `${prop.balloonContent}</ul>`
-                  }
-                  prop.balloonContent = `${prop.balloonContent}</div>`;
+          {/*<YMaps instanceRef={(el) => {this.yMap = el; console.log(el); }}>*/}
+            {/*<Map state={this.state.map} width={'100%'} height={'600px'} instanceRef={el => {this.map = el}}>*/}
+              {/*{*/}
+                {/*this.state.points.map((point, i) => {*/}
+                  {/*const geo = {*/}
+                    {/*coordinates: [point.lat, point.lon]*/}
+                  {/*};*/}
+                  {/*const prop = {*/}
+                    {/*balloonContent: `<div class="custom-baloon">Станция метро: <b>${point.commonName}</b>`*/}
+                  {/*};*/}
+                  {/*if (point.lines.length > 0) {*/}
+                    {/*prop.balloonContent = `${prop.balloonContent}<ul>Ветки:`;*/}
+                    {/*point.lines.forEach(line => {*/}
+                      {/*prop.balloonContent = prop.balloonContent + `<li id="${line.id}">${line.name}</li>`;*/}
+                    {/*});*/}
+                    {/*prop.balloonContent = `${prop.balloonContent}</ul>`*/}
+                  {/*}*/}
+                  {/*prop.balloonContent = `${prop.balloonContent}</div>`;*/}
 
-                  const opt = {
-                    preset: 'islands#icon',
-                    iconColor: '#0095b6'
-                  };
+                  {/*const opt = {*/}
+                    {/*preset: 'islands#icon',*/}
+                    {/*iconColor: '#0095b6'*/}
+                  {/*};*/}
 
-                  return (
-                    <Placemark key={i}
-                               geometry={geo}
-                               properties={prop}
-                               options={opt}
-                               onClick={ev => this.selectMarker(ev)}
-                    />
-                  )
-                })
-              }
-            </Map>
-          </YMaps>
+                  {/*return (*/}
+                    {/*<Placemark key={i}*/}
+                               {/*geometry={geo}*/}
+                               {/*properties={prop}*/}
+                               {/*options={opt}*/}
+                               {/*onClick={ev => this.selectMarker(ev)}*/}
+                    {/*/>*/}
+                  {/*)*/}
+                {/*})*/}
+              {/*}*/}
+            {/*</Map>*/}
+          {/*</YMaps>*/}
         </div>
       </div>
     );
