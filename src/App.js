@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { YMaps, Map, Placemark } from 'react-yandex-maps';
 import './App.css';
 import { getListStopPoint, getListStopPointByType, getListStopPointByMode } from './common/service';
-import Select from './components/select/Select';
+import TSelect from './components/select/Select';
 
 const markerStyles = {
   width: '50px',
@@ -29,7 +29,8 @@ class App extends Component {
         margin: [0, 16, 0, 16]
       },
       points: [],
-      line: null
+      line: null,
+      selectedMode: ModeList[0]
     }
   }
 
@@ -67,10 +68,16 @@ class App extends Component {
     this.map.balloon.close();
   };
 
+  onSelectMode = (ev) => {
+    this.setState({selectedMode: ev});
+  };
+
   render() {
     return (
-      <div className="App">
-        <Select options={ModeList}/>
+      <div className="app">
+        <div className="app__select">
+          <TSelect options={ModeList} label={'Выберите тип остановки:'} onSelect={this.onSelectMode}/>
+        </div>
 
         <button onClick={this.getList} style={{margin: '8px'}}>
           GET StopPoint
