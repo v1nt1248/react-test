@@ -66,7 +66,7 @@ class YandexMap extends Component {
     this.setState({
       line: {
         id: ev.target.id,
-        name: ev.target.innerHTML
+        name: ev.target.innerHTMLgi
       }
     });
 

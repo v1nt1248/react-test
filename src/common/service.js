@@ -39,6 +39,8 @@ export function getListStopPointByType(type) {
     method: 'get',
     url: `${BASE_URL}/StopPoint/Type/${type}?app_id=${TFL.app_id}&app_key=${TFL.app_key}`
   }).then(res => {
+    /*
+    служебный код (для проверки принадлежности к определенным видам)
     let modes = {
       names: [],
       qt: {}
@@ -53,8 +55,9 @@ export function getListStopPointByType(type) {
         modes.qt[mode].push(index);
       })
     });
-    // console.log(res.data);
-    // console.log(modes);
+    console.log(res.data);
+    console.log(modes);
+    */
 
     removeSpinnerElem();
     return res.data;
@@ -76,7 +79,8 @@ export function getListStopPointByMode(modeObj) {
     method: 'get',
     url: `${BASE_URL}/StopPoint/Mode/${modeObj.mode}?app_id=${TFL.app_id}&app_key=${TFL.app_key}&includeRouteBlockedStops=true`
   }).then(res => {
-    /*  */
+    /*
+    // служебный код (для проверки принадлежности к определенным типам)
     let types = {
       names: [],
       qt: {}
@@ -88,9 +92,9 @@ export function getListStopPointByMode(modeObj) {
       }
       types.qt[point.stopType].push(index);
     });
-    // console.log(res.data.stopPoints);
-    // console.log(types);
-    /*  */
+    console.log(res.data.stopPoints);
+    console.log(types);
+    */
 
     removeSpinnerElem();
     if (modeObj.stopTypes.length !== 0) {
